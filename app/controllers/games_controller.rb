@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @games = Game.all
@@ -11,7 +12,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(word: "Balloon")
-    render json: @game.id
+    render json: "\n Game ID: #{@game.id}" + "\n Word: #{@game.word} \n"
   end
 
   def show

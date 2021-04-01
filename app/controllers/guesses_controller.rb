@@ -1,4 +1,5 @@
 class GuessesController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @guesses = Guess.all
@@ -11,10 +12,10 @@ class GuessesController < ApplicationController
 
   # curl -X POST http://localhost:3000/guesses
   def create
-    @guess = Guess.create(letter_guessed: 'k', game_id: 19)
+    @guess = Guess.create(letter_guessed: 'q', game_id: 3)
     @guess.save
 
-    @attempted_guesses = Guess.where(game_id: 19).count
+    @attempted_guesses = Guess.where(game_id: 3).count
     @letters_guessed = Guess.pluck(:letter_guessed)
 
     @dashes = ""
