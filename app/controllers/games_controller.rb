@@ -10,23 +10,16 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
+  # curl -X POST http://localhost:3000/games
   def create
-    @game = Game.create(word: "Balloon")
-    render json: "\n Game ID: #{@game.id}" + "\n Word: #{@game.word} \n"
+    @game = Game.create(word: "Balloons")
+    render json: {game_id: @game.id, word_length: @game.word.length }
   end
 
+  # curl -X GET http://localhost:3000/games/11
   def show
     @game = Game.find(params[:id])
 
-    render json: "word: #{@game.word}"
-  end
-
-  def edit
-    @game = Game.find(params[:id])
-  end
-
-  def update
-    @game = Game.find(params[:id])
-    render json: @game
+    render json: {number_of_guesses: @game.guesses.count, dashes: @game.updated_guess}
   end
 end
