@@ -16,7 +16,7 @@ class GamesController < ApplicationController
     render json: {game_id: @game.id, word_length: @game.word.length }
   end
 
-  # curl -X GET http://localhost:3000/games/11
+  # curl -X GET http://localhost:3000/games/:id
   def show
     @game = Game.find(params[:id])
 
