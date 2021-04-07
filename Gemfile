@@ -33,6 +33,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'pry-rails'
+  gem 'pry-inline'
   gem 'hirb', '~> 0.7.3'
 end
 
