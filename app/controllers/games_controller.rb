@@ -20,6 +20,16 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
 
-    render json: {number_of_guesses: @game.guesses.count, dashes: @game.updated_guess}
+    render json: {number_of_guesses: @game.guesses.count, letter: @letters, dashes: @game.updated_guess}
   end
-end
+
+  def edit
+  end 
+
+  def update
+    @game = Game.find(params[:id])
+    @letters = params[:letters]
+    
+    render json: {letter: @letters, number_of_guesses: @game.guesses.count, dashes: @game.updated_guess}
+  end 
+end 
