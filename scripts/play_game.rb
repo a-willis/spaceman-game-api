@@ -8,32 +8,22 @@ def create_game_
   "Content-Type" => "application/json")
   id = response.body[11..13].to_i
 
-  puts response.body
-  puts
-  puts response.body[11..13]
-  puts id
   return id
-
 end
 
 def calculate_next_guess(int)
   alphabet = ("a".."z").to_a
   a = alphabet[int]
 return a
-
 end 
 
 def make_a_guess(guess, id)
   letter_guess = guess
-  puts "letter guess: #{letter_guess}"
   a = '{"guess": "'+ "#{letter_guess}" + '"}'
 
-  puts a
   url = 'http://localhost:3000/games/' + "#{id}"
-  puts url
   response = Faraday.put(url, a, "Content-Type" => "application/json")
   return response.body
-  puts response.body
 end 
 
 def random_guesses(id)

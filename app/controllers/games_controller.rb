@@ -1,5 +1,3 @@
-require 'pry'
-
 class GamesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -10,7 +8,7 @@ class GamesController < ApplicationController
   # curl -X POST http://localhost:3000/games
   def create
     @game = Game.create
-
+    
     render json: {game_id: @game.id}
   end
 
