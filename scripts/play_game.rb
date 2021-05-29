@@ -1,5 +1,4 @@
 require 'faraday'
-require 'ap'
 require 'json'
 
 def create_game_
@@ -17,11 +16,12 @@ def create_game_
 
 end
 
-def calculate_next_guess
-  alphabet = "a".."z"
-  alphabet_arr = alphabet.to_a
-  alphabet_arr.sample
-end
+def calculate_next_guess(int)
+  alphabet = ("a".."z").to_a
+  a = alphabet[int]
+return a
+
+end 
 
 def make_a_guess(guess, id)
   letter_guess = guess
@@ -37,8 +37,11 @@ def make_a_guess(guess, id)
 end 
 
 def random_guesses(id)
+  int = 0
   loop do
-    next_guess = calculate_next_guess()
+    next_guess = calculate_next_guess(int)
+    int += 1
+
     puts "next guess: #{next_guess}"
 
     resp = JSON.load(make_a_guess(next_guess, id))
@@ -50,14 +53,3 @@ end
 
 game_id = create_game_ 
 random_guesses(game_id)
-
-# create a game 
-# save id returned 
-# url = /games/#{id}
-# loop do
-# loop do
-#   next_guess = calculate_next_guess()
-#   resp = make a guess (next_guess)
-  
-#   break if resp.game_over
-# end
